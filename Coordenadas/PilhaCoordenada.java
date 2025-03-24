@@ -1,4 +1,6 @@
-class PilhaCoordenada {
+package Coordenadas;
+
+public class PilhaCoordenada {
     Coordenada topo;
 
     public void empilhar(int x, int y) {

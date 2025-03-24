@@ -1,3 +1,8 @@
+package Main;
+
+import Coordenadas.Coordenada;
+import Coordenadas.*;
+
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;

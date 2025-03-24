@@ -1,8 +1,11 @@
-class Coordenada {
-    int x, y;
-    Coordenada proximo;
+package Coordenadas;
 
-    Coordenada(int x, int y) {
+public class Coordenada {
+    public int x;
+    public int y;
+    public Coordenada proximo;
+
+    public Coordenada(int x, int y) {
         this.x = x;
         this.y = y;
         this.proximo = null;

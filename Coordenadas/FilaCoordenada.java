@@ -1,4 +1,8 @@
-class FilaCoordenada {
+package Coordenadas;
+
+import Coordenadas.Coordenada;
+
+public class FilaCoordenada {
     Coordenada inicio, fim;
 
     public void enfileirar(int x, int y) {
