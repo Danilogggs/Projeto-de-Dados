@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class Fila {
     public static void main(String[] args) throws IOException, InterruptedException {
-        File arquivo = new File("Imagens/rio.png");
+        File arquivo = new File("Imagens/cruz.png");
         BufferedImage imagem = ImageIO.read(arquivo);
 
         JFrame frame = new JFrame("Preenchimento de Imagem");
@@ -25,8 +25,8 @@ public class Fila {
 
         int largura = imagem.getWidth();
         int altura = imagem.getHeight();
-        int origemX = 1;
-        int origemY = 1;
+        int origemX = 667;
+        int origemY = 253;
         int corFundo = imagem.getRGB(origemX, origemY);
         int novaCor = 0xFFFF0000; // Vermelho
 
