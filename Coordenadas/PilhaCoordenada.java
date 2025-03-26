@@ -1,22 +1,42 @@
 package Coordenadas;
 
 public class PilhaCoordenada {
-    Coordenada topo;
+    private Coordenada[] elementos;
+    private int topo;
 
-    public void empilhar(int x, int y) {
-        Coordenada nova = new Coordenada(x, y);
-        nova.proximo = topo;
-        topo = nova;
+    public PilhaCoordenada(int capacidade) {
+        elementos = new Coordenada[capacidade];
+        topo = -1;
     }
 
-    public Coordenada desempilhar() {
-        if (vazio()) throw new RuntimeException("Pilha vazia");
-        Coordenada temp = topo;
-        topo = topo.proximo;
-        return temp;
+    public void push(int x, int y) {
+        if (isFull()) {
+            throw new IllegalStateException("A pilha está cheia");
+        }
+        elementos[++topo] = new Coordenada(x, y);
     }
 
-    public boolean vazio() {
-        return topo == null;
+    public Coordenada pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A pilha está vazia");
+        }
+        Coordenada removido = elementos[topo];
+        elementos[topo--] = null;
+        return removido;
+    }
+
+    public Coordenada peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A pilha está vazia");
+        }
+        return elementos[topo];
+    }
+
+    public boolean isEmpty() {
+        return topo == -1;
+    }
+
+    public boolean isFull() {
+        return topo == elementos.length - 1;
     }
 }

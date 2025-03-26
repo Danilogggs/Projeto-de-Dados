@@ -1,29 +1,56 @@
 package Coordenadas;
 
-import Coordenadas.Coordenada;
-
 public class FilaCoordenada {
-    Coordenada inicio, fim;
+    private Coordenada[] elementos;
+    private int capacidade;
+    private int inicio;
+    private int fim;
+    private int tamanho;
 
-    public void enfileirar(int x, int y) {
-        Coordenada nova = new Coordenada(x, y);
-        if (fim != null) {
-            fim.proximo = nova;
-        } else {
-            inicio = nova;
+    public FilaCoordenada(int capacidade) {
+        this.capacidade = capacidade;
+        elementos = new Coordenada[capacidade];
+        inicio = 0;
+        fim = -1;
+        tamanho = 0;
+    }
+
+    public void enqueue(Coordenada elemento) {
+        if (isFull()) {
+            throw new IllegalStateException("A fila está cheia");
         }
-        fim = nova;
+
+        fim = (fim + 1) % capacidade;
+        elementos[fim] = elemento;
+        tamanho++;
     }
 
-    public Coordenada desenfileirar() {
-        if (vazia()) throw new RuntimeException("Fila vazia");
-        Coordenada temp = inicio;
-        inicio = inicio.proximo;
-        if (inicio == null) fim = null;
-        return temp;
+    public Coordenada dequeue() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A fila está vazia");
+        }
+
+        Coordenada elementoRemovido = elementos[inicio];
+        elementos[inicio] = null;
+        inicio = (inicio + 1) % capacidade;
+        tamanho--;
+
+        return elementoRemovido;
     }
 
-    public boolean vazia() {
-        return inicio == null;
+    public Coordenada front() {
+        if (isEmpty()) {
+            throw new IllegalStateException("A fila está vazia");
+        }
+
+        return elementos[inicio];
+    }
+
+    public boolean isEmpty() {
+        return tamanho == 0;
+    }
+
+    public boolean isFull() {
+        return tamanho == capacidade;
     }
 }
